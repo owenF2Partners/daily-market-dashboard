@@ -49,7 +49,7 @@ years = st.slider("Select number of years of data to show:", 1, 10, 5)
 
 all_series = {
     "Federal Funds Rate": "FEDFUNDS",
-    "10Y Treasury Yield": "GS10",
+    "10Y Treasury Yield": "DGS10",
     "30Y Mortgage Rate": "MORTGAGE30US"
 }
 
