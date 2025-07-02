@@ -13,16 +13,16 @@ fred = Fred(api_key="77750e28c1fc3822266cbf14fffb80bf")
 st.title("Flynn Financial Daily Market Dashboard")
 
 # ----------------------------
-# 🔹 Summary Cards Section
+#  Summary Cards Section
 # ----------------------------
 st.subheader(" Key Rates Snapshot")
 
 summary_series = {
     "Fed Funds": "FEDFUNDS",
-    "UST 3M": "GS3M",
-    "UST 1Y": "GS1",
-    "UST 10Y": "GS10",
-    "UST 30Y": "GS30",
+    "UST 3M": "DGS3M",
+    "UST 1Y": "DGS1",
+    "UST 10Y": "DGS10",
+    "UST 30Y": "DGS30",
     "30Y Mortgage": "MORTGAGE30US"
 }
 
@@ -40,9 +40,9 @@ for i, (label, code) in enumerate(summary_series.items()):
         cols[i].write(f"{label} data unavailable.")
 
 # ----------------------------
-# 🔹 Show All Charts
+# Show All Charts
 # ----------------------------
-st.subheader("📈 Market Series Charts")
+st.subheader(" Market Series Charts")
 
 # Select how many years of data to show
 years = st.slider("Select number of years of data to show:", 1, 10, 5)
