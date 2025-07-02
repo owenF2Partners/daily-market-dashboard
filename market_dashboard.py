@@ -19,7 +19,7 @@ st.subheader(" Key Rates Snapshot")
 
 summary_series = {
     "Fed Funds": "FEDFUNDS",
-    "UST 3M": "DGS3M",
+    "UST 3M": "DGS3MO",
     "UST 1Y": "DGS1",
     "UST 10Y": "DGS10",
     "UST 30Y": "DGS30",
