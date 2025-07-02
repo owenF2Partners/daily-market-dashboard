@@ -4,15 +4,18 @@ import pandas as pd
 import plotly.express as px
 
 # FRED API Setup
-fred = Fred(api_key="77750e28c1fc3822266cbf14fffb80bf")  # Replace with your own key
+fred = Fred(api_key="77750e28c1fc3822266cbf14fffb80bf")
+
+# LINK TO WEBSITE
+# https://f2partners-daily-market-dashboard.streamlit.app/
 
 # App Title
-st.title("📊 Daily Market Dashboard")
+st.title("Flynn Financial Daily Market Dashboard")
 
 # ----------------------------
 # 🔹 Summary Cards Section
 # ----------------------------
-st.subheader("📌 Key Rates Snapshot")
+st.subheader(" Key Rates Snapshot")
 
 summary_series = {
     "Fed Funds": "FEDFUNDS",
