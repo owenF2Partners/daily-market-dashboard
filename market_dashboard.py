@@ -3,19 +3,18 @@ from fredapi import Fred
 import pandas as pd
 import plotly.express as px
 
+# https://f2partners-daily-market-dashboard.streamlit.app/
+
 # FRED API Setup
 fred = Fred(api_key="77750e28c1fc3822266cbf14fffb80bf")
-
-# LINK TO WEBSITE
-# https://f2partners-daily-market-dashboard.streamlit.app/
 
 # App Title
 st.title("Flynn Financial Daily Market Dashboard")
 
 # ----------------------------
-#  Summary Cards Section
+# Summary Cards Section
 # ----------------------------
-st.subheader(" Key Rates Snapshot")
+st.subheader("Key Rates Snapshot")
 
 summary_series = {
     "Fed Funds": "FEDFUNDS",
@@ -36,37 +35,53 @@ for i, (label, code) in enumerate(summary_series.items()):
         prev_value = round(ts.iloc[-2], 2)
         delta = round(latest_value - prev_value, 2)
         cols[i].metric(label, f"{latest_value}%", f"{delta:+}%", help=f"As of {latest_date}")
-    except Exception as e:
+    except Exception:
         cols[i].write(f"{label} data unavailable.")
 
 # ----------------------------
-# Show All Charts
+# Market Series Charts Section
 # ----------------------------
-st.subheader(" Market Series Charts")
+st.subheader("Market Series Charts")
 
-# Select how many years of data to show
+# Slider for years shown
 years = st.slider("Select number of years of data to show:", 1, 10, 5)
 
+# Define all chart series
 all_series = {
     "Federal Funds Rate": "FEDFUNDS",
     "10Y Treasury Yield": "DGS10",
-    "30Y Mortgage Rate": "MORTGAGE30US"
+    "30Y Mortgage Rate": "MORTGAGE30US",
+    "UST 1Y": "DGS1",
+    "UST 3M": "DGS3MO",
+    "UST 30Y": "DGS30"
 }
 
-for name, code in all_series.items():
-    try:
-        data = fred.get_series(code).dropna()
-        data = data[data.index > pd.Timestamp.today() - pd.DateOffset(years=years)]
+# Convert to list for index-based looping
+series_list = list(all_series.items())
 
-        fig = px.line(
-            x=data.index,
-            y=data.values,
-            title=f"{name} - Last {years} Years",
-            labels={'x': 'Date', 'y': 'Percent'}
-        )
-        fig.update_traces(mode="lines+markers")
-        fig.update_layout(hovermode="x unified")
+# Display 2 charts per row
+for i in range(0, len(series_list), 2):
+    cols = st.columns(2)
 
-        st.plotly_chart(fig, use_container_width=True)
-    except Exception as e:
-        st.warning(f"Could not load chart for {name}")
+    for j in range(2):
+        if i + j < len(series_list):
+            name, code = series_list[i + j]
+
+            try:
+                data = fred.get_series(code).dropna()
+                data = data[data.index > pd.Timestamp.today() - pd.DateOffset(years=years)]
+                latest_date = data.index[-1].strftime("%B %d, %Y")
+
+                fig = px.line(
+                    x=data.index,
+                    y=data.values,
+                    title=f"{name} - Last {years} Years",
+                    labels={'x': 'Date', 'y': 'Percent'}
+                )
+                fig.update_traces(mode="lines+markers")
+                fig.update_layout(hovermode="x unified")
+
+                cols[j].plotly_chart(fig, use_container_width=True)
+                cols[j].caption(f"Latest data as of: {latest_date}")
+            except Exception:
+                cols[j].warning(f"Could not load chart for {name}")
