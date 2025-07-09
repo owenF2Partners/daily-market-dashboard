@@ -49,7 +49,7 @@ st.subheader("Market Series Charts")
 years = st.selectbox(
     "Select number of years of data to show:",
     options=[1, 5, 10],
-    index=1  # default to 5
+    index=0  # default to 1
 )
 
 # Define all chart series
