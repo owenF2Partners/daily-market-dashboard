@@ -43,8 +43,12 @@ for i, (label, code) in enumerate(summary_series.items()):
 # ----------------------------
 st.subheader("Market Series Charts")
 
-# Slider for years shown
-years = st.slider("Select number of years of data to show:", 1, 10, 5)
+# Select history for years shown
+years = st.selectbox(
+    "Select number of years of data to show:",
+    options=[1, 5, 10],
+    index=1  # default to 5
+)
 
 # Define all chart series
 all_series = {
