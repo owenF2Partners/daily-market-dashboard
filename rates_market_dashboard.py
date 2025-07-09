@@ -5,7 +5,7 @@ import plotly.express as px
 
 st.set_page_config(layout="wide")
 
-# https://f2partners-daily-market-dashboard.streamlit.app/
+# https://rates-f2partners-daily-market-dashboard.streamlit.app/
 
 # FRED API Setup
 fred = Fred(api_key="77750e28c1fc3822266cbf14fffb80bf")
