@@ -53,7 +53,13 @@ all_series = {
     "30Y Mortgage Rate": "MORTGAGE30US",
     "UST 1Y": "DGS1",
     "UST 3M": "DGS3MO",
-    "UST 30Y": "DGS30"
+    "UST 30Y": "DGS30",
+    "UST 10Y - 3M": "T10Y3M",
+    "10 Year Breakeven Inflation Rate": "T10YIE",
+    "5-Year, 5-Year Forward Inflation Expectation Rate": "T5YIFR",
+    "Moody's Seasoned Aaa Corporate Bond Yield": "DAAA",
+    "Moody's Seasoned Baa Corporate Bond Yield": "DBAA",
+    "ICE BofA US High Yield Index Effective Yield": "BAMLH0A0HYM2EY"
 }
 
 # Convert to list for index-based looping
