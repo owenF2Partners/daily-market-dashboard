@@ -67,7 +67,7 @@ series_list = list(all_series.items())
 
 # Display 2 charts per row
 for i in range(0, len(series_list), 2):
-    cols = st.columns([10, 10])
+    cols = st.columns([20, 20])
 
     for j in range(2):
         if i + j < len(series_list):
