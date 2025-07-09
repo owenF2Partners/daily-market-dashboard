@@ -11,7 +11,7 @@ st.set_page_config(layout="wide")
 fred = Fred(api_key="77750e28c1fc3822266cbf14fffb80bf")
 
 # App Title
-st.title("Flynn Financial Daily Market Dashboard")
+st.title("Flynn Financial Rates Daily Market Dashboard")
 
 # ----------------------------
 # Summary Cards Section
