@@ -3,6 +3,8 @@ from fredapi import Fred
 import pandas as pd
 import plotly.express as px
 
+st.set_page_config(layout="wide")
+
 # https://f2partners-daily-market-dashboard.streamlit.app/
 
 # FRED API Setup
